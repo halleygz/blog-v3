@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Create directories
+# Create backend directories
 mkdir -p backend/controllers/auth
 mkdir -p backend/controllers/postBlog
 mkdir -p backend/controllers/seeBlog
