@@ -19,7 +19,7 @@ const signUp = async (req, res) => {
             res.status(401).json({error: 'invalid user data'})
         }
     } catch (err) {
-        res.status(401).json({msg: 'error occured during signUp'})
+        res.status(401).json({error: 'Internal server error'})
         console.log(err) 
     }
 }
