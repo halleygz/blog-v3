@@ -15,6 +15,7 @@ const createBlog = async (req, res) => {
     if (blog) {
       res.status(201).json({
         message: "blog created",
+        _id: blog._id,
         author: blog.author,
         title: blog.title,
         content: blog.content,
