@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { CommentSchema } from "./comments.js";
 
 const BlogSchema = new mongoose.Schema({
   author: {
@@ -20,7 +21,7 @@ const BlogSchema = new mongoose.Schema({
   },
   likedBy: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
   dislikedBy: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
-  // comments: []
+  comments: [CommentSchema],
 
   createdAt: {
     type: Date,
