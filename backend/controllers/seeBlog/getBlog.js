@@ -1,0 +1,35 @@
+import mongoose from "mongoose";
+import Blog from "../../models/blogs.js";
+
+// get single blog
+const getSingleBlog = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const singleBlog = await Blog.findById({_id: id});
+    if (!singleBlog) {
+      res.status(400).json({ error: "blog not found" });
+    } else {
+      res.status(200).json( singleBlog );
+    }
+  } catch (err) {
+    console.log("error occured in getSingleBlog", err);
+    res.status(500).json({ error: "internal server error" });
+  }
+};
+
+//get all blogs
+const getAllBlogs = async (req, res) => {
+  try {
+    const allBlogs = await Blog.find();
+    if (!allBlogs) {
+      res.status(400).json({ error: "no blogs posted" });
+    } else {
+      res.status(200).json({ allBlogs });
+    }
+  } catch (err) {
+    console.log("error occured in getAllBlogs", err);
+    res.status(500).json({ error: "internal server error" });
+  }
+};
+
+export { getSingleBlog, getAllBlogs };
