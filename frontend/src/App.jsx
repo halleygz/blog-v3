@@ -12,6 +12,7 @@ function App() {
   return (
     <div className="font-lexend-deca">
       <Routes>
+        
         <Route path="/" element={<Home />}/>
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<SignUp />} />
