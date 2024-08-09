@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InputFields from '../../components/tools/InputFields';
 import { FormBtns } from '../../components/tools/Buttons';
 import { Link } from 'react-router-dom';
+import useSignUp from '../../hooks/useSignUp';
 
 const SignUp = () => {
+  const [inputs, setInputs] = useState({
+    fullName: "",
+    username: "",
+    password: "",
+    comfirmPassword: "",
+  })
+  const { loading, signup } = useSignUp()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    await signup(inputs)
+  }
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-white p-6">
       <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8 md:flex md:max-w-full">
@@ -13,13 +25,14 @@ const SignUp = () => {
         <div className="md:w-1/2 p-8">
           <h3 className="text-3xl font-bold text-gray-800 mb-2">Welcome</h3>
           <p className="text-gray-500 mb-8">Let’s sign you up quickly</p>
-          <form>
-            <InputFields content={"Enter Your full Name"} type={"text"} id={"fullName"}/>
-            <InputFields content={"Enter Your Email"} type={"email"}/>
-            <InputFields content={"Enter a Username"} type={"text"}/>
-            <InputFields content={"Enter Password"} type={"password"}/>
-            <InputFields content={"Comfirm Password"} type={"password"}/>
-            <FormBtns content={"SIGNUP"}/>
+          <form onSubmit={handleSubmit}>
+            <InputFields content={"Enter Your full Name"} type={"text"} id={"fullName"} value={inputs.fullName} onChange={(e)=>setInputs({...inputs, fullName: e.target.value})}/>
+            <InputFields content={"Enter Your Email"} type={"email"} id={"email"} value={inputs.email} onChange={(e)=>setInputs({...inputs, email: e.target.value})}/>
+            <InputFields content={"Enter a Username"} type={"text"} id={"username"} value={inputs.username} onChange={(e)=>setInputs({...inputs, username: e.target.value})}/>
+            <InputFields content={"Enter Password"} type={"password"} id={"password"} value={inputs.password} onChange={(e)=>setInputs({...inputs, password: e.target.value})}/>
+            <InputFields content={"Comfirm Password"} type={"password"} id={"comfirmPassword"} value={inputs.comfirmPassword} onChange={(e)=>setInputs({...inputs, comfirmPassword: e.target.value})}/>
+            <FormBtns content={"SIGNUP"} isLoading={loading}/>
+            
           </form>
           <p className="text-sm text-gray-500 mt-4">
             already have an account?{' '}
