@@ -14,7 +14,8 @@ const login = async (req, res) => {
         res.status(200).json({
             message: `successfully logged`,
             userId: user._id,
-            userName: user.username
+            userName: user.username,
+            avatar: user.avatar
         })
     } catch (err) {
         res.status(500).json({error: `Internal server error`})

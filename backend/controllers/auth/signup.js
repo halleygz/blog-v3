@@ -14,7 +14,7 @@ const signUp = async (req, res) => {
         // gen the token here by userId
         if (user) {
             gentTokenAndCookie(user._id, res)
-            res.status(201).json({ user: user._id, username: user.username})
+            res.status(201).json({ user: user._id, username: user.username, avatar:user.avatar})
         } else {
             res.status(401).json({error: 'invalid user data'})
         }
