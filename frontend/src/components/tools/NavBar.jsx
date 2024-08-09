@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import Profile from "./Profile";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContext";
+import useLogOut from "../../hooks/useLogOut";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const isLogged = true
+  const {authUser} = useAuthContext()
+  const {loading, logout} = useLogOut()
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
   return (
     <header className="w-full flex justify-between items-center py-4 px-6">
-        {isLogged?<Profile letter={"S"}/> : <h1
+        {authUser?<Profile letter={"S"}/> : <h1
         className={` text-gray-700 ${
           menuOpen ? "hidden" : "text-lg font-bold"
         }`}
@@ -44,16 +47,31 @@ const NavBar = () => {
           menuOpen ? "block" : "hidden"
         } md:block`}
       >
+        {authUser? 
+        <>
         <Link className="text-gray-500 hover:text-gray-800" to="/feed">Feed</Link>
-        <Link className="text-gray-500 hover:text-gray-800" to="/login">Login</Link>
         <Link className="text-gray-500 hover:text-gray-800" to="/createblog">Add Blog</Link>
         <Link className="text-gray-500 hover:text-gray-800" to="/search">Search</Link>
+        <Link
+        to="/"
+        onClick={logout}
+        className="bg-pink-300 text-white px-4 py-2 hover:bg-pink-400"
+        >
+          Logout
+        </Link>
+        </>
+        : 
+        <>
+        <Link className="text-gray-500 hover:text-gray-800" to="/login">Login</Link>
+        
         <Link
           to="/signup"
           className="bg-pink-300 text-white px-4 py-2 hover:bg-pink-400"
         >
           SignUp
         </Link>
+        </>
+        }
       </nav>
     </header>
   );
