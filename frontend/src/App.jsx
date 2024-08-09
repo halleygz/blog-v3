@@ -9,7 +9,7 @@ import EditBlog from "./pages/blog/EditBlog";
 import Search from "./pages/blog/Search";
 function App() {
   return (
-    <div>
+    <div className="font-lexend-deca">
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/login" element={<Login/>} />
