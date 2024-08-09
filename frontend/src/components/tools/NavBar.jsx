@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Profile from "./Profile";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -43,24 +44,16 @@ const NavBar = () => {
           menuOpen ? "block" : "hidden"
         } md:block`}
       >
-        <a href="#" className="text-gray-500 hover:text-gray-800">
-          feed
-        </a>
-        <a href="#" className="text-gray-500 hover:text-gray-800">
-          Login
-        </a>
-        <a href="#" className="text-gray-500 hover:text-gray-800">
-          Add Blog
-        </a>
-        <a href="#" className="text-gray-500 hover:text-gray-800">
-          search
-        </a>
-        <a
-          href="#"
+        <Link className="text-gray-500 hover:text-gray-800" to="/feed">Feed</Link>
+        <Link className="text-gray-500 hover:text-gray-800" to="/login">Login</Link>
+        <Link className="text-gray-500 hover:text-gray-800" to="/createblog">Add Blog</Link>
+        <Link className="text-gray-500 hover:text-gray-800" to="/search">Search</Link>
+        <Link
+          to="/signup"
           className="bg-pink-300 text-white px-4 py-2 hover:bg-pink-400"
         >
           SignUp
-        </a>
+        </Link>
       </nav>
     </header>
   );

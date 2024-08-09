@@ -1,6 +1,7 @@
 import React from 'react';
 import InputFields from '../../components/tools/InputFields';
 import { FormBtns } from '../../components/tools/Buttons';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
   return (
@@ -22,7 +23,7 @@ const SignUp = () => {
           </form>
           <p className="text-sm text-gray-500 mt-4">
             already have an account?{' '}
-            <a href="#" className="text-pink-300 hover:text-pink-400">log-in</a>
+            <Link to="/login" className="text-pink-300 hover:text-pink-400">log-in</Link>
           </p>
         </div>
       </div>

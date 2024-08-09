@@ -1,6 +1,7 @@
 import React from 'react'
 import InputFields from '../../components/tools/InputFields'
 import { FormBtns } from '../../components/tools/Buttons'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   return (
@@ -18,8 +19,8 @@ const Login = () => {
             <FormBtns content={"LOGIN"}/>
           </form>
           <p className="text-sm text-gray-500 mt-4">
-            already have an account?{' '}
-            <a href="#" className="text-pink-300 hover:text-pink-400">log-in</a>
+            Don't have an account?{' '}
+            <Link to="/signup" className="text-pink-300 hover:text-pink-400">SIGNUP</Link>
           </p>
         </div>
       </div>
