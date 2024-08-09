@@ -1,7 +1,7 @@
 const FormBtns = ({ content, onClick, isLoading }) => {
   return (
     <button
-      className="w-[200px] h-[57px] mr-[170px] bg-[#E6B9A6] text-[#2F3645] py-2 rounded hover:bg-[#f3a786] text-Lexend Deca font-bold"
+      className="w-[200px] h-[57px] m-1 bg-[#E6B9A6] text-[#2F3645] py-2 rounded hover:bg-[#f3a786] text-Lexend Deca font-bold"
       onClick={onClick}
     >
       {content}
