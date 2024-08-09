@@ -13,7 +13,7 @@ const NavBar = () => {
   };
   return (
     <header className="w-full flex justify-between items-center py-4 px-6">
-        {authUser?<Profile letter={"S"}/> : <h1
+        {authUser?<Profile letter={authUser?.avatar.toUpperCase()}/> : <h1
         className={` text-gray-700 ${
           menuOpen ? "hidden" : "text-lg font-bold"
         }`}
