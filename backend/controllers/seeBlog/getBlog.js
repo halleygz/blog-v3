@@ -20,11 +20,20 @@ const getSingleBlog = async (req, res) => {
 //get all blogs
 const getAllBlogs = async (req, res) => {
   try {
-    const allBlogs = await Blog.find();
-    if (!allBlogs) {
+    const page = parseInt(req.query.page) || 1
+    const limit = parseInt(req.query.limit) || 10
+    const skip = (page - 1) * limit
+    const allBlogs = await Blog.find().skip(skip).limit(limit);
+    const totalBlogs = await Blog.countDocuments()
+    if (!allBlogs || allBlogs.length === 0) {
       res.status(400).json({ error: "no blogs posted" });
     } else {
-      res.status(200).json( allBlogs );
+      res.status(200).json( {
+        totalBlogs,
+        currentPage: page,
+        totalPages: Math.ceil(totalBlogs / limit),
+        blogs: allBlogs
+      } );
     }
   } catch (err) {
     console.log("error occured in getAllBlogs", err);
