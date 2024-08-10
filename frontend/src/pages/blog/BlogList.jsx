@@ -2,29 +2,52 @@ import React from "react";
 import NavBar from "../../components/tools/NavBar";
 import { TagBtns } from "../../components/tools/Buttons";
 import Feed from "../../components/blog/Feed";
+import useGetAllBlogs from "../../hooks/useGetAllBlogs";
 
 const BlogList = () => {
-  const title = "15 Disadvantages Of Freedom And How You Can Workaround It."
-  const content = `
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-  aliquip ex ea commodo consequat. Duis aute irure dolor in
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Exceptur sint occaecat cupidatat non proident, sunt in
-  culpa qui officia deserunt mollit anim id est laborum ...
-  `
+  const { loading, blogs, page, totalPages, nextPage, prevPage } = useGetAllBlogs();
+
+  const structured = blogs.map((blog) => (
+    <Feed
+      content={blog.content.slice(0, 300)}
+      title={blog.title}
+      key={blog._id}
+      id={blog._id}
+      tags={blog.tags}
+    />
+  ));
+
   return (
     <div className="min-h-screen flex flex-col bg-whitesmoke p-6">
       <NavBar />
 
       <main className="max-w-[80%] flex-grow container mx-auto px-6">
         <h2 className="text-gray-500 text-xl font-medium mb-2">Trending</h2>
-        <Feed content={content} title={title}/>
-        <Feed content={content} title={title}/>
-        <Feed content={content} title={title}/>
-        <Feed content={content} title={title}/>
+        {loading ? (
+          <p>Loading...</p>
+        ) : blogs.length === 0 ? (
+          <p>No posts yet</p>
+        ) : (
+          structured
+        )}
       </main>
+
+      <div className="flex justify-center mt-4 space-x-4">
+        <button
+          onClick={prevPage}
+          disabled={page === 1}
+          className={`px-4 py-2 bg-blue-500 text-white rounded ${page === 1 && 'opacity-50 cursor-not-allowed'}`}
+        >
+          Previous
+        </button>
+        <button
+          onClick={nextPage}
+          disabled={page === totalPages}
+          className={`px-4 py-2 bg-blue-500 text-white rounded ${page === totalPages && 'opacity-50 cursor-not-allowed'}`}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
