@@ -19,7 +19,7 @@ function App() {
         <Route path="/createblog" element={<AddBlog />}/>
         <Route path="/feed" element={<BlogList/>}/>
         <Route path="/read/:id" element={<BlogPost/>}/>
-        <Route path="/editpost/:id" element={<EditBlog />}/>
+        <Route path="/edit/:id" element={<EditBlog />}/>
         <Route path="/search" element={<Search />}/>
       </Routes>
       <Toaster/>
