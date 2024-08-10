@@ -18,8 +18,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/createblog" element={<AddBlog />}/>
         <Route path="/feed" element={<BlogList/>}/>
-        <Route path="/post" element={<BlogPost/>}/>
-        <Route path="/editpost" element={<EditBlog />}/>
+        <Route path="/read/:id" element={<BlogPost/>}/>
+        <Route path="/editpost/:id" element={<EditBlog />}/>
         <Route path="/search" element={<Search />}/>
       </Routes>
       <Toaster/>

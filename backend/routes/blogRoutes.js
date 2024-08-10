@@ -8,6 +8,6 @@ const router = Router();
 router.post("/create", protector, createBlog);
 router.get("/read/:id", protector, getSingleBlog);
 router.post("/create/:id/comment", protector, postComment);
-router.get("/read/", protector, getAllBlogs);
+router.get("/read", protector, getAllBlogs);
 
 export default router;
