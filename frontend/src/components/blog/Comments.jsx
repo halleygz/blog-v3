@@ -6,7 +6,12 @@ const Comments = () => {
   const { loading, blog } = useGetBlog();
   if (loading) return <p>loading</p>;
   if (!blog?.comments || blog.comments.length === 0)
-    return <p>No comments available</p>;
+    return (
+  <>
+    <ChatBox />
+    <p>No comments available</p>
+  </>
+    );
   let commentData = blog.comments;
   let commentList = commentData.map((singleComment) => (
     <div className="flex space-x-4 items-center">
