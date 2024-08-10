@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast'
 
 const useLogin = () => {
     const [loading, setLoading] = useState(false)
+
     const {setAuthUser} = useAuthContext()
     const navigate = useNavigate()
     const login = async (inputs) => {
