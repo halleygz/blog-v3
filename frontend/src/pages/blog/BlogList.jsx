@@ -15,10 +15,10 @@ const BlogList = () => {
   culpa qui officia deserunt mollit anim id est laborum ...
   `
   return (
-    <div className="min-h-screen flex flex-col bg-white p-6">
+    <div className="min-h-screen flex flex-col bg-whitesmoke p-6">
       <NavBar />
 
-      <main className="flex-grow container mx-auto px-6">
+      <main className="max-w-[80%] flex-grow container mx-auto px-6">
         <h2 className="text-gray-500 text-xl font-medium mb-2">Trending</h2>
         <Feed content={content} title={title}/>
         <Feed content={content} title={title}/>
