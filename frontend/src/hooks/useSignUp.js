@@ -33,7 +33,7 @@ const useSignUp = () => {
         }),
       });
 
-      if (!res.ok) {
+      if (!res) {
         throw new Error("Network response was not ok");
       }
 

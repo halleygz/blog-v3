@@ -2,8 +2,12 @@ import React from "react";
 import NavBar from "../../components/tools/NavBar";
 import { TagBtns } from "../../components/tools/Buttons";
 import Feed from "../../components/blog/Feed";
+import useGetAllBlogs from "../../hooks/useGetAllBlogs";
 
 const BlogList = () => {
+  const {loading, blogs} = useGetAllBlogs()
+  const structured = blogs.map((blog)=> <Feed content={blog.content.slice(0,300)} title={blog.title} key={blog._id} id={blog._id} tags={blog.tags}/>)
+  
   const title = "15 Disadvantages Of Freedom And How You Can Workaround It."
   const content = `
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -20,10 +24,7 @@ const BlogList = () => {
 
       <main className="flex-grow container mx-auto px-6">
         <h2 className="text-gray-500 text-xl font-medium mb-2">Trending</h2>
-        <Feed content={content} title={title}/>
-        <Feed content={content} title={title}/>
-        <Feed content={content} title={title}/>
-        <Feed content={content} title={title}/>
+        {blogs.length == 0 ? <p>no posts yet</p>: structured}
       </main>
     </div>
   );
