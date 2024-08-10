@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NavBar from '../../components/tools/NavBar';
+import { Link } from 'react-router-dom'
 
 const Home = () => {
 
@@ -12,7 +13,7 @@ const Home = () => {
         <h2 className="text-[88px] font-normal text-[#2F3645] mt-0 mb-[30px] font-dm-serif-display max-w-full"> without limits</h2>
 
         <p className="text-gray-500 text-[30px] mb-[60px]">A place to read, write and deepen your thoughts</p>
-        <button className="bg-[#E6B9A6] px-6 py-2 hover:bg-[#f3a786] h-[57px] w-[288px] font-Lexend Deca mb-[150px] text-[20px] text-[#2F3645] font-medium">SignUp to read</button>
+        <button className="bg-[#E6B9A6] px-6 py-2 hover:bg-[#f3a786] h-[57px] w-[288px] font-Lexend Deca mb-[150px] text-[20px] text-[#2F3645] font-medium"><Link to="/signup">SignUp to read</Link></button>
       </main>
 
       <footer className="py-4">
