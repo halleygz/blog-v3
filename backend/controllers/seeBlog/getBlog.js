@@ -24,7 +24,7 @@ const getAllBlogs = async (req, res) => {
     if (!allBlogs) {
       res.status(400).json({ error: "no blogs posted" });
     } else {
-      res.status(200).json({ allBlogs });
+      res.status(200).json( allBlogs );
     }
   } catch (err) {
     console.log("error occured in getAllBlogs", err);

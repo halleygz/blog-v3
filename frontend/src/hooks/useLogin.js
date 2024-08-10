@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast'
 
 const useLogin = () => {
     const [loading, setLoading] = useState(false)
+
     const {setAuthUser} = useAuthContext()
     const navigate = useNavigate()
     const login = async (inputs) => {
@@ -20,7 +21,7 @@ const useLogin = () => {
                     email, password
                 })
             })
-            if(!res.ok) {
+            if(!res) {
                 throw new Error ('Network response was not ok')
             }
             const data = await res.json()
