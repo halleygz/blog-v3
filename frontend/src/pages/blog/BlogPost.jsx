@@ -2,8 +2,11 @@ import React from 'react'
 import NavBar from '../../components/tools/NavBar';
 import BlogPostComp from '../../components/blog/BlogPost';
 import Comments from '../../components/blog/Comments';
+import useGetBlog from '../../hooks/useGetBlog';
 
 const BlogPost = () => {
+  const {loading, blog} = useGetBlog()
+  console.log(blog)
   const someJ = {
     title: "15 Disadvantages Of Freedom And How You Can Workaround It.",
     author: "samurai2099",
@@ -19,7 +22,7 @@ const BlogPost = () => {
       <NavBar/>
 
       <main className="bg-gray-50 max-w-3xl mx-auto p-4 rounded-md">
-        <BlogPostComp blogData={someJ}/>
+        <BlogPostComp blogData={blog}/>
         <Comments />
       </main>
     </div>

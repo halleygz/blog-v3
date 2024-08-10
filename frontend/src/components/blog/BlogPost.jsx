@@ -2,7 +2,7 @@ import React from 'react'
 import { LikeDislike } from '../tools/Buttons'
 
 const BlogPostComp = ({ blogData={} }) => {
-    const {title, author, date, content} = blogData
+    const {title, author, createdAt, content} = blogData
     
   return (
     <>
@@ -11,7 +11,7 @@ const BlogPostComp = ({ blogData={} }) => {
         </h1>
         <div className="text-sm text-gray-500 mb-6">
           <p>written by @{author}</p>
-          <p>on {date}</p>
+          <p>on {createdAt}</p>
         </div>
         <article className="text-gray-700 text-sm md:text-base leading-relaxed mb-6">
           {content}
