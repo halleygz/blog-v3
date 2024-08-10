@@ -1,10 +1,12 @@
 import React from "react";
 import { LikeDislike } from "../tools/Buttons";
 import MarkdownPreview from "@uiw/react-markdown-preview";
+import { useAuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const BlogPostComp = ({ blogData = {} }) => {
-  const { title, author, createdAt, content } = blogData;
-
+  const { title, author, createdAt, content, _id } = blogData;
+  const {authUser} = useAuthContext()
   return (
     <>
       <h1 className="text-2xl md:text-3xl font-bold text-orange-600 mb-4">
@@ -28,9 +30,10 @@ const BlogPostComp = ({ blogData = {} }) => {
         {/* Continue with more Lorem Ipsum to mimic the content length */}
       </article>
 
-      <div className="flex space-x-4 mb-8 max-w-60">
+      <div className="flex space-x-3 mb-8 max-w-60">
         <LikeDislike content={"Like"} />
         <LikeDislike content={"Dislike"} />
+        {authUser.userName === author&&<Link to={`/edit/${_id}`}><LikeDislike content={"Edit Blog"}/></Link>}
       </div>
     </>
   );

@@ -3,9 +3,11 @@ import NavBar from '../../components/tools/NavBar';
 import BlogPostComp from '../../components/blog/BlogPost';
 import Comments from '../../components/blog/Comments';
 import useGetBlog from '../../hooks/useGetBlog';
+import { useAuthContext } from '../../context/AuthContext';
 
 const BlogPost = () => {
   const {loading, blog} = useGetBlog()
+  
   const someJ = {
     title: "15 Disadvantages Of Freedom And How You Can Workaround It.",
     author: "samurai2099",
