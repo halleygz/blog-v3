@@ -6,7 +6,6 @@ import useGetBlog from '../../hooks/useGetBlog';
 
 const BlogPost = () => {
   const {loading, blog} = useGetBlog()
-  console.log(blog)
   const someJ = {
     title: "15 Disadvantages Of Freedom And How You Can Workaround It.",
     author: "samurai2099",

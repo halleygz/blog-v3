@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast'
 import { useParams } from 'react-router-dom'
 
 const useGetBlog = () => {
-    const [loading, setLoading] = useState()
+    const [loading, setLoading] = useState(true)
     const [blog, setBlog] = useState([])
     const {id} = useParams()
     useEffect(()=>{
