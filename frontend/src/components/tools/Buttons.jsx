@@ -3,6 +3,7 @@ const FormBtns = ({ content, onClick, isLoading }) => {
     <button
     type="submit"
       className="w-full bg-pink-300 text-white py-2 rounded hover:bg-pink-400"
+
       onClick={onClick}
     >
       {content}
