@@ -19,8 +19,8 @@ const BlogSchema = new mongoose.Schema({
   searchable: {
     type: String,
   },
-  likedBy: [{ type: mongoose.Schema.ObjectId, ref: "User", unique: true }],
-  dislikedBy: [{ type: mongoose.Schema.ObjectId, ref: "User", unique: true }],
+  likedBy: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
+  dislikedBy: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
   comments: [CommentSchema],
 
   createdAt: {
