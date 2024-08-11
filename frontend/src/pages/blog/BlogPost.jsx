@@ -13,7 +13,7 @@ const BlogPost = () => {
   const [placeHolderLink, setPlaceHolderLink] = useState(null);
 
   useEffect(() => {
-    if (!loading && !authLoading && blog?.author && authUser?.userName === blog.author) {
+    if (!loading && !authLoading && blog?.author && authUser?.username === blog.author) {
       setPlaceHolderLink(
         <Link to={`/edit/${blog._id}`}>
           <LikeDislike content={"Edit Blog"} />
