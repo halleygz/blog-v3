@@ -9,11 +9,11 @@ import { LikeDislike } from '../../components/tools/Buttons';
 
 const BlogPost = () => {
   const { loading, blog } = useGetBlog();
-  const { authUser } = useAuthContext();
+  const { authUser, loading: authLoading } = useAuthContext();
   const [placeHolderLink, setPlaceHolderLink] = useState(null);
 
   useEffect(() => {
-    if (!loading && blog?.author && authUser?.userName === blog.author) {
+    if (!loading && !authLoading && blog?.author && authUser?.userName === blog.author) {
       setPlaceHolderLink(
         <Link to={`/edit/${blog._id}`}>
           <LikeDislike content={"Edit Blog"} />
@@ -22,22 +22,22 @@ const BlogPost = () => {
     } else {
       setPlaceHolderLink(null); // Clear the placeholder if conditions don't match
     }
-  }, [loading, blog, authUser]);
+  }, [loading, authLoading, blog, authUser]);
 
-  console.log(blog.author, authUser.userName);
+  console.log(blog.author);
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">
       <NavBar />
 
       <main className="bg-gray-50 max-w-3xl mx-auto p-4 rounded-md">
-        {!loading && blog ? (
+        {loading || authLoading ? (
+          <p>Loading...</p> // Show loading indicator while either data is being fetched
+        ) : (
           <>
             <BlogPostComp blogData={blog} placeHolder={placeHolderLink} />
             <Comments />
           </>
-        ) : (
-          <p>Loading...</p> // Optionally, you can show a loading indicator
         )}
       </main>
     </div>
