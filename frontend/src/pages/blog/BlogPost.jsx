@@ -4,10 +4,12 @@ import BlogPostComp from '../../components/blog/BlogPost';
 import Comments from '../../components/blog/Comments';
 import useGetBlog from '../../hooks/useGetBlog';
 import { useAuthContext } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
+import { LikeDislike } from '../../components/tools/Buttons';
 
 const BlogPost = () => {
   const {loading, blog} = useGetBlog()
-  
+  const {authUser} = useAuthContext()
   const someJ = {
     title: "15 Disadvantages Of Freedom And How You Can Workaround It.",
     author: "samurai2099",
@@ -23,7 +25,7 @@ const BlogPost = () => {
       <NavBar/>
 
       <main className="bg-gray-50 max-w-3xl mx-auto p-4 rounded-md">
-        <BlogPostComp blogData={blog}/>
+        <BlogPostComp blogData={blog} placeHolder={authUser.userName === blog.author?<Link to={`/edit/${blog._id}`}><LikeDislike content={"Edit Blog"}/></Link>:<></>}/>
         <Comments />
       </main>
     </div>

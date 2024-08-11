@@ -4,7 +4,7 @@ import MarkdownPreview from "@uiw/react-markdown-preview";
 import { useAuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 
-const BlogPostComp = ({ blogData = {} }) => {
+const BlogPostComp = ({ blogData = {}, placeHolder="" }) => {
   const { title, author, createdAt, content, _id } = blogData;
   const {authUser} = useAuthContext()
   return (
@@ -33,7 +33,8 @@ const BlogPostComp = ({ blogData = {} }) => {
       <div className="flex space-x-3 mb-8 max-w-60">
         <LikeDislike content={"Like"} />
         <LikeDislike content={"Dislike"} />
-        {authUser.userName === author?<Link to={`/edit/${_id}`}><LikeDislike content={"Edit Blog"}/></Link>:<></>}
+          {placeHolder}
+        {/* {authUser.userName === author?<Link to={`/edit/${_id}`}><LikeDislike content={"Edit Blog"}/></Link>:<></>} */}
       </div>
     </>
   );
