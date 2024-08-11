@@ -10,7 +10,13 @@ import { LikeDislike } from '../../components/tools/Buttons';
 const BlogPost = () => {
   const {loading, blog} = useGetBlog()
   const {authUser} = useAuthContext()
-  const placeHolderLink = authUser.userName === blog.author?<Link to={`/edit/${blog._id}`}><LikeDislike content={"Edit Blog"}/></Link>:<></>
+  const placeHolderLink = !loading && blog.author && authUser.userName === blog.author ? (
+    <Link to={`/edit/${blog._id}`}>
+      <LikeDislike content={"Edit Blog"} />
+    </Link>
+  ) : (
+    <></>
+  );
   console.log(blog.author)
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">
