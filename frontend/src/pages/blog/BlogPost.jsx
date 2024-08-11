@@ -10,6 +10,7 @@ import { LikeDislike } from '../../components/tools/Buttons';
 const BlogPost = () => {
   const {loading, blog} = useGetBlog()
   const {authUser} = useAuthContext()
+  const placeHolderLink = authUser.userName === blog.author?<Link to={`/edit/${blog._id}`}><LikeDislike content={"Edit Blog"}/></Link>:<></>
   const someJ = {
     title: "15 Disadvantages Of Freedom And How You Can Workaround It.",
     author: "samurai2099",
@@ -25,7 +26,7 @@ const BlogPost = () => {
       <NavBar/>
 
       <main className="bg-gray-50 max-w-3xl mx-auto p-4 rounded-md">
-        <BlogPostComp blogData={blog} placeHolder={authUser.userName === blog.author?<Link to={`/edit/${blog._id}`}><LikeDislike content={"Edit Blog"}/></Link>:<></>}/>
+        <BlogPostComp blogData={blog} placeHolder={placeHolderLink}/>
         <Comments />
       </main>
     </div>
