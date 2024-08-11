@@ -24,7 +24,6 @@ const BlogPost = () => {
     }
   }, [loading, authLoading, blog, authUser]);
 
-  console.log(blog.author, authUser);
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">
