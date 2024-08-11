@@ -33,7 +33,7 @@ const BlogPostComp = ({ blogData = {} }) => {
       <div className="flex space-x-3 mb-8 max-w-60">
         <LikeDislike content={"Like"} />
         <LikeDislike content={"Dislike"} />
-        {authUser.userName === author&&<Link to={`/edit/${_id}`}><LikeDislike content={"Edit Blog"}/></Link>}
+        {authUser.userName === author?<Link to={`/edit/${_id}`}><LikeDislike content={"Edit Blog"}/></Link>:<></>}
       </div>
     </>
   );
