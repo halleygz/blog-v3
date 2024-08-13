@@ -19,7 +19,7 @@ const TagBtns = ({content, onClick, isLoading}) => {
 
 const LikeDislike = ({content, onClick, isLoading}) => {
     return(
-        <button className="flex-1 bg-orange-200 text-orange-600 py-2 rounded" onClick={onClick} >{content}</button>
+        <button className="flex-1 bg-orange-200 text-orange-600 py-2 rounded px-2" onClick={onClick} >{content}</button>
     )
 }
 
