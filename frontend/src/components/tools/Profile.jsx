@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Profile = ({letter}) => {
   return (
     <div className="flex items-center">
-          <div className="bg-[#E6B9A6] text-[32px] rounded-full h-12 w-12 flex items-center justify-center">
+          <div className="bg-pink-300 text-white font-bold rounded-full h-12 w-12 flex items-center justify-center">
             <Link to="/">
 
             {letter}

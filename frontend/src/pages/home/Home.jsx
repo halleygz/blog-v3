@@ -1,14 +1,11 @@
-
 import React, { useState } from "react";
 import NavBar from "../../components/tools/NavBar";
 import { useAuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 
-
 const Home = () => {
   const { authUser } = useAuthContext();
   return (
-
     <div className="min-h-screen flex flex-col items-center justify-between bg-white text-center p-6">
       <NavBar />
 
@@ -42,5 +39,3 @@ const Home = () => {
 };
 
 export default Home;
-
-

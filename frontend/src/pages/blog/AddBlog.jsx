@@ -1,10 +1,8 @@
-
 import React, { useMemo, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import InputFields from "../../components/tools/InputFields";
 import useCreateBlog from '../../hooks/useCreateBlog'
-
 const AddBlog = () => {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
@@ -37,7 +35,6 @@ const AddBlog = () => {
   await createBlog({title, content, tagsArray})
  }
   return (
-
     <div className="min-h-screen bg-gray-100 flex flex-col items-center p-8">
       <h1 className="text-4xl font-bold mb-8 text-gray-800">
         What's in your mind today?

@@ -66,7 +66,7 @@ const NavBar = () => {
         
         <Link
           to="/signup"
-          className="bg-[#e6b9a6] px-4 py-2 hover:bg-[#f3a786]"
+          className="bg-pink-300 text-white px-4 py-2 hover:bg-pink-400"
         >
           SignUp
         </Link>
