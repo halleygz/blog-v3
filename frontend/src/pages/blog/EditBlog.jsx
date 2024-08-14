@@ -16,7 +16,7 @@ const EditBlog = () => {
     if (blog) {
       setContent(blog.content || "");
       setTitle(blog.title || "");
-      setTags(blog.tags?.join(", ") || "");
+      setTags(blog.tags?.join(" ") || "");
       setTagsArray(blog.tags || []);
     }
   }, [blog]);
@@ -33,7 +33,7 @@ const EditBlog = () => {
     () => (event) => {
       const value = event.target.value;
       setTags(value);
-      const resultArray = value.replace(/\s+/g, "").split(",");
+      const resultArray = value.split(" ");
       setTagsArray(resultArray);
     },
     []
@@ -44,7 +44,7 @@ const EditBlog = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await editBlog({title, content, tags})
+    await editBlog({title, content, tagsArray})
   };
   const handleClick = async (e) => {
     e.preventDefault()

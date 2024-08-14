@@ -6,7 +6,8 @@ const createBlog = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const createBlog = async (inputs) => {
-        const {title, content, tags} = inputs
+        const {title, content, tagsArray} = inputs
+        console.log(tagsArray)
         const success = handleUserInput({title, content})
         if(!success) return
         setLoading(true)
@@ -15,7 +16,7 @@ const createBlog = () => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    title, content, tags,
+                    title, content, tags: tagsArray,
                 })
             })
             if(!res) throw new Error("response not ok")
