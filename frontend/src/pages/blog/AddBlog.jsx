@@ -1,34 +1,88 @@
-import React from 'react'
-import InputFields from '../../components/tools/InputFields'
-import TextArea from '../../components/tools/TextArea'
-import { FormBtns } from '../../components/tools/Buttons'
-import { Link } from 'react-router-dom'
 
-
-
+import React, { useMemo, useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import InputFields from "../../components/tools/InputFields";
+import useCreateBlog from '../../hooks/useCreateBlog'
 
 const AddBlog = () => {
+  const [content, setContent] = useState("");
+  const [title, setTitle] = useState("");
+  const [tags, setTags] = useState("");
+  const [tagsArray, setTagsArray] = useState([]);
+  const atag = tagsArray.map((btag) => (
+    <code
+      key={btag}
+      className="bg-slate-300 m-1 pl-1 pr-1 align-center rounded-[8px]"
+    >
+      #{btag}
+    </code>
+  ));
+  const {loading, createBlog} = useCreateBlog()
+  const onTagsChange = useMemo(
+    () => (event) => {
+      const value = event.target.value;
+      setTags(value);
+      const resultArray = value.replace(/\s+/g, "").split(",");
+      setTagsArray(resultArray);
+    },
+    []
+  );
+
+  const handleContentChange = (value) => {
+    setContent(value);
+  };
+ const handleSubmit = async (e) => {
+  e.preventDefault()
+  await createBlog({title, content, tags})
+ }
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-whitesmoke p-6">
-      <div className="w-full max-w-md bg-whitesmoke rounded-lg p-8 md:flex md:max-w-full">
-        <div className="min-h-[70vh] hidden md:flex md:justify-center md:items-center md:w-1/3 bg-[#E6B9A6] text-[#2F3645] p-10 rounded-l-lg">
-          <h2 className="text-[64px] font-bold">Try Buddy</h2>
-        </div>
-        <div className="md:w-1/2 p-8 pl-[70px]">
-          <h3 className="text-4xl font-bold font-dm-serif-display text-gray-800 mb-[50px]">What’s in your mind today?</h3>          
-          <form>
-            <InputFields content={"Title"} type={"text"}/>
-            <TextArea content="Content"/>
-          </form>
-          <div className='flex flex-row justify-between'>
-            <div className="max-w-[163px] h-[46px] flex-1 relative box-border border-[1px] border-solid border-gray-300 bg-[#E6B9A6] text-[#2F3645] font-bold mr-4 text-center">Add Tag</div>
-            <input className=" h-[46px] flex-1 relative box-border border-[1px] border-solid border-gray-300 bg-whitesmoke"/>
-          </div> 
-          <div className='my-[40px] mx-[70px]'><FormBtns content={"POST"}/></div>
-        </div>
+
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-8">
+      <h1 className="text-4xl font-bold mb-8 text-gray-800">
+        What's in your mind today?
+      </h1>
+
+      <div className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-6">
+        <form onSubmit={handleSubmit}>
+          <label className="block text-lg font-semibold text-gray-700 mb-2">
+            Title
+          </label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full border border-gray-300 p-3 rounded mb-6 focus:outline-none focus:border-gray-400"
+            placeholder="Enter the title"
+          />
+          <InputFields
+            className="mt-2"
+            content={"Tags"}
+            type={"text"}
+            id={"tags"}
+            name={"tags"}
+            value={tags}
+            onChange={onTagsChange}
+            placeholder="Enter the Title"
+          />
+          <div className="inline">{atag}</div>
+
+          <label className="block text-lg font-semibold text-gray-700 mb-2">
+            Content
+          </label>
+          <ReactQuill
+            value={content}
+            onChange={handleContentChange}
+            className="h-60 mb-6"
+            placeholder="Type something"
+          />
+          <button className="bg-pink-300 text-white px-6 py-2  hover:bg-pink-400 mt-6">
+            Add Post
+          </button>
+        </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AddBlog
+export default AddBlog;
