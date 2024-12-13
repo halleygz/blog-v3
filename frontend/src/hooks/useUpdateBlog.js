@@ -7,7 +7,7 @@ const useUpdateBlog = () => {
     const navigate = useNavigate()
     const {id}= useParams()
     const editBlog = async (inputs) => {
-        const {title, content, tags} = inputs
+        const {title, content, tagsArray} = inputs
         const success = handleUserInput({title, content})
         if(!success) return
         setLoading(true)
@@ -16,7 +16,7 @@ const useUpdateBlog = () => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    title, content, tags
+                    title, content, tagsArray
                 })
             })
             if(!res) throw new Error("resoponse not ok")

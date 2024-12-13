@@ -23,7 +23,7 @@ const AddBlog = () => {
     () => (event) => {
       const value = event.target.value;
       setTags(value);
-      const resultArray = value.replace(/\s+/g, "").split(",");
+      const resultArray = value.split(" ");
       setTagsArray(resultArray);
     },
     []
@@ -34,7 +34,7 @@ const AddBlog = () => {
   };
  const handleSubmit = async (e) => {
   e.preventDefault()
-  await createBlog({title, content, tags})
+  await createBlog({title, content, tagsArray})
  }
   return (
 

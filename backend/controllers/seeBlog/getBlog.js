@@ -23,7 +23,7 @@ const getAllBlogs = async (req, res) => {
     const page = parseInt(req.query.page) || 1
     const limit = parseInt(req.query.limit) || 10
     const skip = (page - 1) * limit
-    const allBlogs = await Blog.find().skip(skip).limit(limit);
+    const allBlogs = await Blog.find().sort({updatedAt: -1}).skip(skip).limit(limit);
     const totalBlogs = await Blog.countDocuments()
     if (!allBlogs || allBlogs.length === 0) {
       res.status(400).json({ error: "no blogs posted" });

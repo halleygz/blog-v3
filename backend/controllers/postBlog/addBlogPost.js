@@ -25,7 +25,7 @@ const createBlog = async (req, res) => {
       res.status(401).json({ err: "Couldn't create blog" });
     }
   } catch (err) {
-    consnole.log("error occurred in addBlogPost.js", err);
+    console.log("error occurred in addBlogPost.js", err);
     res.status(500).json({ error: "internal server error" });
   }
 };
